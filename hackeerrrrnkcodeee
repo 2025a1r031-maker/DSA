@@ -1,4 +1,4 @@
-include<stdio.h>
+#include<stdio.h>
 #include<stdlib.h>
 #define MAX 100
 struct Node{
@@ -80,5 +80,6 @@ void displaylist(){
         struct Node* temp =head;
         while(temp!=NULL){
             temp=temp->next;
+}
 }
 }
