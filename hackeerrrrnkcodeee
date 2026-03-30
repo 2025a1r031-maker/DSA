@@ -1,85 +1,53 @@
-#include<stdio.h>
-#include<stdlib.h>
-#define MAX 100
+#include <math.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <limits.h>
+#include <stdbool.h>
 struct Node{
     int data;
     struct Node* next;
+    
 };
-struct Node *head = NULL;
+struct Node* head = NULL;
 struct Node* createNode(int data){
-    struct Node* temp=(struct Node*)malloc(sizeof(struct Node));
-    temp->data=data;
-    temp->next =NULL;
+    struct Node* temp = (struct Node*)malloc (sizeof(struct Node));
+    temp->data = data;
+    temp->next = NULL;
     return temp;
 }
-void insertinbeg(int data){
-    struct Node* newNode=createNode(data);
-    newNode->next=head;
-    head=newNode;
-   
-}
-void deletefromanypos(int pos){
-    if(head==NULL)
-   
-    else if(pos==1)
-    deletefrombeg();
-    else{
-        struct Node* temp =head;
-       int i=0;
-        while(temp!=NULL){
-            if(i==pos-1)
-            break;
-            temp=temp->next;
-            i++;
-        }
-        if(temp==NULL)
-        
-        else{
-            if(temp->next !=NULL)
-            temp->next=temp->next->next;
-        }
-        printf("\n");
+int main(){
+int n, val;
+scanf("%d", &n);
+struct Node* tail = NULL;
+    int stack[n], top = -1;
+    for(int i =0; i<n; i++){
+        scanf("%d", &val);
+        struct Node* newNode = createNode(val);
+        if(head == NULL)
+            head = newNode;
+        else
+            tail->next = newNode;
+         stack[++top] = val;
+        tail = newNode;
     }
-}
-void insertnodeatend(int data){
-    struct Node* newNode =createNode(data);
-    if(head == NULL)
-    head = newNode;
-    else{
-        struct Node* temp= head;
-        while(temp->next !=NULL){
-            temp->next=newNode;
-        }
-}
-}
-void insertatanypos(int data,int pos){
-    if(head == NULL)
-else if(pos==1)
-insertinbeg(data);
-else{
+    int flag = 0;
     struct Node* temp = head;
-    int i=0;
-    while(temp!=NULL){
-        if(i==pos-1)
-        break;
-        temp->next;
-        i++;
+    for(int i = top; i>=0; i--){
+   if(stack[i]!= temp->data){
+       flag = 1;
+       break;
+   }
+        temp = temp->next;
+        }
+    if(flag == 0)
+         printf("Palindrome : ");
+    else
+        printf("Not Palindrome : ");
+    for(int i = top; i>=0; i --){
+        printf("%d ", stack[i]);
     }
-    if(temp == NULL)
-    else{
-        struct Node* newnode=createNode(data);
-        newnode->next=temp->next;
-        temp->next=newnode;
-    }
-}
-}
-void displaylist(){
-       if(head==NULL){
-           return;
-       }
-        struct Node* temp =head;
-        while(temp!=NULL){
-            temp=temp->next;
-}
-}
+    return 0;
+    
 }
