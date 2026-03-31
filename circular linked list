@@ -1,4 +1,5 @@
-#include<stdio.h>
+
+  #include<stdio.h>
 #include<stdlib.h> 
 struct Node{
     int data;
@@ -28,11 +29,47 @@ void insertInBeg(int data){
   }
 }
 void insertNodeAtEnd(int data){
+    struct Node* newNode = createNode(data);
+    if(head == NULL){
+        head = newNode;
+        newNode->next = head;
+    }
+    else{
+        struct Node* temp = head;
+        while(temp->next != head){
+            temp = temp->next;
+        }
+        temp->next = newNode;
+        newNode->next = head;
+    }
+    printf("Node inserted ata end !!\n");
     
     } 
 void insertAtAnyPosition(int data,int pos){
-    
+    if(head == NULL)
+    printf("list is empty");
+else if(pos==0)
+insertinbeg(data);
+else{
+    struct Node* temp = head;
+    int i=0;
+    while(temp!=NULL){
+        if(i==pos-1)
+        break;
+        temp->next;
+        i++;
+    }
+    if(temp == NULL)
+    printf("Invalid position!!!\n");
+    else{
+        struct Node* newnode=createNode(data);
+        newnode->next=temp->next;
+        temp->next=newnode;
+        printf("Node inserted at position %d successfully!!\n",pos);
+    }
 }
+}
+
 void deleteFromBeg(){
     
 }
@@ -62,7 +99,7 @@ void search(int data){
     }
 int main (){
     while(1){
-        printf("\n***** Circular Singly Linked List Menu*****\n"); 
+        printf("\n*****Circular Singly Linked List Menu*****\n"); 
         printf("1. Insert IN BEGINNING \n"); 
         printf("2. Insert at End \n");
         printf("3. Insert at any Position \n");
